@@ -1,4 +1,11 @@
 <?php
+/**
+ * AuditAttribute class file.
+ * @author Christoffer Niska <christoffer.niska@nordsoftware.com>
+ * @copyright Copyright &copy; Nord Software 2013-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @package nordsoftware.yii-audit.models
+ */
 
 /**
  * This is the model class for table "audit_attribute".
