@@ -7,7 +7,7 @@
  * @package nordsoftware.yii-audit.behaviors
  */
 
-Yii::import('common.extensions.audit.models.*');
+Yii::import('vendor.nordsoftware.yii-audit.models.*');
 
 /**
  * An active record behavior for creating audit records.
