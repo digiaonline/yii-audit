@@ -1,0 +1,16 @@
+{
+    "name": "nordsoftware/yii-audit",
+    "description": "Extension for collecting active records audit data for the Yii PHP framework.",
+    "type": "yii-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Christoffer Niska",
+            "email": "ChristofferNiska@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}

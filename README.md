@@ -1,4 +1,4 @@
 yii-audit
 =========
 
-Extension that collect audit data for the Yii PHP framework.
+Extension for collecting active records audit data for the Yii PHP framework.
