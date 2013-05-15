@@ -61,7 +61,7 @@ class AuditBehavior extends CActiveRecordBehavior {
 					$entry->attribute = $name;
 					$entry->oldValue = $this->_oldAttributes[$name];
 					$entry->newValue = $owner->attributes[$name];
-					$entry->created = new CDbExpression('NOW()');
+					$entry->created = date('Y-m-d H:i:s');
 					$entry->save();
 				}
 			}
