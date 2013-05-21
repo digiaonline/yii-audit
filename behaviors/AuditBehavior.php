@@ -89,6 +89,52 @@ class AuditBehavior extends CActiveRecordBehavior {
 	}
 
 	/**
+	 * Returns the creation date time for the record.
+	 * @return string the date time.
+	 */
+	public function getCreatedAt() {
+		list($model, $modelId) = $this->getModel();
+		$model = AuditModel::model()->findByAttributes(array(
+			'model' => $model,
+			'modelId' => $modelId,
+			'action' => self::ACTION_CREATE,
+		));
+		return $model !== null ? $model->created : null;
+	}
+
+	/**
+	 * Returns the last edit time for the record.
+	 * @return string the date time.
+	 */
+	public function getUpdatedAt() {
+		list($model, $modelId) = $this->getModel();
+		$model = AuditModel::model()->find(array(
+			'condition' => 'model=:model AND modelId=:modelId AND action=:action',
+			'params' => array(
+				':model' => $model,
+				':modelId' => $modelId,
+				':action' => self::ACTION_UPDATE,
+			),
+			'order' => 'created DESC',
+		));
+		return $model !== null ? $model->created : null;
+	}
+
+	/**
+	 * Returns the deletion date time for the record.
+	 * @return string the date time.
+	 */
+	public function getDeletedAt() {
+		list($model, $modelId) = $this->getModel();
+		$model = AuditModel::model()->findByAttributes(array(
+			'model' => $model,
+			'modelId' => $modelId,
+			'action' => self::ACTION_DELETE,
+		));
+		return $model !== null ? $model->created : null;
+	}
+
+	/**
 	 * Creates an audit entry for the record.
 	 * @param $action the audit action.
 	 */
