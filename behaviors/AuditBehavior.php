@@ -89,6 +89,15 @@ class AuditBehavior extends CActiveRecordBehavior {
 	}
 
 	/**
+	 * Checks the an attribute has changed since the model was loaded.
+	 * @param string $name the name of the attribute to check.
+	 * @return boolean the result.
+	 */
+	public function hasAttributeChanged($name) {
+		return $this->owner->{$name} !== $this->_oldAttributes[$name];
+	}
+
+	/**
 	 * Returns the creation date time for the record.
 	 * @return string the date time.
 	 */
