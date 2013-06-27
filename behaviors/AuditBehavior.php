@@ -13,11 +13,6 @@ Yii::import('vendor.nordsoftware.yii-audit.models.*');
  * An active record behavior for creating audit records.
  */
 class AuditBehavior extends CActiveRecordBehavior {
-	// Audit actions
-	const ACTION_CREATE = 'create';
-	const ACTION_UPDATE = 'update';
-	const ACTION_DELETE = 'delete';
-
 	/**
 	 * @var string the name of the id column.
 	 */
@@ -74,9 +69,9 @@ class AuditBehavior extends CActiveRecordBehavior {
 	 */
 	public function afterSave($event) {
 		if ($this->owner->isNewRecord) {
-			$this->createModelEntry(self::ACTION_CREATE);
+			$this->createModelEntry(AuditModel::ACTION_CREATE);
 		} else {
-			$this->createModelEntry(self::ACTION_UPDATE);
+			$this->createModelEntry(AuditModel::ACTION_UPDATE);
 		}
 	}
 
@@ -85,7 +80,7 @@ class AuditBehavior extends CActiveRecordBehavior {
 	 * @param CModelEvent $event event parameter
 	 */
 	public function beforeDelete($event) {
-		$this->createModelEntry(self::ACTION_DELETE);
+		$this->createModelEntry(AuditModel::ACTION_DELETE);
 	}
 
 	/**
@@ -106,7 +101,7 @@ class AuditBehavior extends CActiveRecordBehavior {
 		$model = AuditModel::model()->findByAttributes(array(
 			'model' => $model,
 			'modelId' => $modelId,
-			'action' => self::ACTION_CREATE,
+			'action' => AuditModel::ACTION_CREATE,
 		));
 		return $model !== null ? $model->created : null;
 	}
@@ -122,7 +117,7 @@ class AuditBehavior extends CActiveRecordBehavior {
 			'params' => array(
 				':model' => $model,
 				':modelId' => $modelId,
-				':action' => self::ACTION_UPDATE,
+				':action' => AuditModel::ACTION_UPDATE,
 			),
 			'order' => 'created DESC',
 		));
@@ -138,7 +133,7 @@ class AuditBehavior extends CActiveRecordBehavior {
 		$model = AuditModel::model()->findByAttributes(array(
 			'model' => $model,
 			'modelId' => $modelId,
-			'action' => self::ACTION_DELETE,
+			'action' => AuditModel::ACTION_DELETE,
 		));
 		return $model !== null ? $model->created : null;
 	}

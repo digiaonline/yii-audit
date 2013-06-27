@@ -20,6 +20,11 @@
  * @property string $created
  */
 class AuditModel extends CActiveRecord {
+	// Audit actions
+	const ACTION_CREATE = 'create';
+	const ACTION_UPDATE = 'update';
+	const ACTION_DELETE = 'delete';
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
