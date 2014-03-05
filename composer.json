@@ -11,6 +11,11 @@
     ],
     "minimum-stability": "dev",
     "require": {
-
+    },
+    "autoload": {
+        "classmap": [
+            "behaviors/",
+            "models/"
+        ]
     }
 }
