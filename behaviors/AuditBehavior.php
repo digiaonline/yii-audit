@@ -188,10 +188,16 @@ class AuditBehavior extends CActiveRecordBehavior {
     protected function getChanger() {
         $app = Yii::app();
         if ($app instanceof CWebApplication) {
-            /* @var AuditChanger $user */
             $user = $app->getUser();
-            $changer = $user->modelClass;
-            $changerId = $user->{$user->idAttribute};
+            if (!$user->isGuest) {
+                /* @var AuditChanger $user */
+                // todo: if audit behavior is not attached to the user this will cause an error.
+                $changer = $user->modelClass;
+                $changerId = $user->{$user->idAttribute};
+            } else {
+                $changer = 'Guest';
+                $changerId = 0;
+            }
         } else {
             $changer = 'Console';
             $changerId = 0;
